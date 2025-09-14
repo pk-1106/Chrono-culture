@@ -22,6 +22,7 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          glow: "hsl(var(--primary-glow))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -47,6 +48,12 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        heritage: {
+          gold: "hsl(var(--heritage-gold))",
+          indigo: "hsl(var(--heritage-indigo))",
+          saffron: "hsl(var(--heritage-saffron))",
+          emerald: "hsl(var(--heritage-emerald))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -62,6 +69,21 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      backgroundImage: {
+        'gradient-heritage': 'var(--gradient-heritage)',
+        'gradient-royal': 'var(--gradient-royal)',
+        'gradient-sunset': 'var(--gradient-sunset)',
+        'gradient-cultural': 'var(--gradient-cultural)',
+      },
+      boxShadow: {
+        'heritage': 'var(--shadow-heritage)',
+        'royal': 'var(--shadow-royal)',
+        'elegant': 'var(--shadow-elegant)',
+      },
+      transitionTimingFunction: {
+        'heritage': 'var(--transition-heritage)',
+        'smooth': 'var(--transition-smooth)',
       },
       keyframes: {
         "accordion-down": {

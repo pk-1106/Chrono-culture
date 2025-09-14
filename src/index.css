@@ -2,41 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Indian Cultural Heritage Design System - Rich, vibrant colors inspired by Indian culture */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base colors inspired by Indian heritage */
+    --background: 35 20% 98%;
+    --foreground: 240 15% 12%;
 
+    /* Card colors with warm undertones */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 240 15% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 240 15% 12%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Saffron-inspired primary colors */
+    --primary: 25 95% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 30 100% 70%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Deep indigo secondary */
+    --secondary: 225 40% 25%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted earth tones */
+    --muted: 35 25% 92%;
+    --muted-foreground: 240 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Golden accent colors */
+    --accent: 45 90% 60%;
+    --accent-foreground: 240 15% 12%;
+
+    /* Cultural heritage specific colors */
+    --heritage-gold: 45 85% 55%;
+    --heritage-indigo: 225 45% 30%;
+    --heritage-saffron: 25 95% 55%;
+    --heritage-emerald: 150 60% 40%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 35 20% 85%;
+    --input: 35 20% 85%;
+    --ring: 25 95% 55%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Beautiful gradients inspired by Indian textiles */
+    --gradient-heritage: linear-gradient(135deg, hsl(var(--heritage-saffron)), hsl(var(--heritage-gold)));
+    --gradient-royal: linear-gradient(135deg, hsl(var(--heritage-indigo)), hsl(225 60% 45%));
+    --gradient-sunset: linear-gradient(135deg, hsl(25 95% 55%), hsl(45 90% 60%), hsl(15 85% 65%));
+    --gradient-cultural: linear-gradient(180deg, hsl(35 20% 98%), hsl(35 25% 95%));
+
+    /* Elegant shadows with cultural colors */
+    --shadow-heritage: 0 10px 30px -10px hsl(var(--heritage-saffron) / 0.3);
+    --shadow-royal: 0 10px 30px -10px hsl(var(--heritage-indigo) / 0.25);
+    --shadow-elegant: 0 20px 40px -15px hsl(var(--primary) / 0.2);
+
+    /* Smooth cultural animations */
+    --transition-heritage: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -90,7 +116,9 @@ All colors MUST be HSL.
     --sidebar-accent: 240 3.7% 15.9%;
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    }
+
+    /* Close dark mode section properly */
   }
 }
 
