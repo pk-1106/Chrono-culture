@@ -1,7 +1,33 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, MapPin, Users, Calendar, Palette } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { ArrowLeft, MapPin, Users, Calendar, Palette, Camera, Music, Utensils, Book, Phone, Globe, Heart, Star } from "lucide-react";
+import MediaGallery from "@/components/MediaGallery";
+import UpcomingEvents from "@/components/UpcomingEvents";
+import ExpandableSection from "@/components/ExpandableSection";
+import ContactInfo from "@/components/ContactInfo";
+
+// Import images
+import templeDravidian from "@/assets/temple-dravidian.jpg";
+import rajasthaniPalace from "@/assets/rajasthani-palace.jpg";
+import keralaBackwaters from "@/assets/kerala-backwaters.jpg";
+import himalayanMonastery from "@/assets/himalayan-monastery.jpg";
+import durgaPujaPandal from "@/assets/durga-puja-pandal.jpg";
+import goldenTemple from "@/assets/golden-temple.jpg";
+import teaGardens from "@/assets/tea-gardens.jpg";
+import navratriGarba from "@/assets/navratri-garba.jpg";
+import konarkSunTemple from "@/assets/konark-sun-temple.jpg";
+import northeastLandscape from "@/assets/northeast-landscape.jpg";
+import mysorePalace from "@/assets/mysore-palace.jpg";
+import goaBeachChurch from "@/assets/goa-beach-church.jpg";
+import rajasthanDesert from "@/assets/rajasthan-desert.jpg";
+import kashmirDalLake from "@/assets/kashmir-dal-lake.jpg";
+import charminariTelangana from "@/assets/charminar-telangana.jpg";
+import chandigarhCity from "@/assets/chandigarh-city.jpg";
+import andamanIslands from "@/assets/andaman-islands.jpg";
+import lakshadweepLagoon from "@/assets/lakshadweep-lagoon.jpg";
+import damanFort from "@/assets/daman-fort.jpg";
 
 const stateData = {
   "maharashtra": {
@@ -27,7 +53,49 @@ const stateData = {
     color: "from-orange-500 to-red-600",
     festivals: ["Ganesh Chaturthi", "Gudi Padwa", "Navratri", "Diwali"],
     languages: ["Marathi", "Hindi", "English"],
-    famousFor: ["Bollywood", "Ajanta Ellora Caves", "Vada Pav", "Warli Art"]
+    famousFor: ["Bollywood", "Ajanta Ellora Caves", "Vada Pav", "Warli Art"],
+    media: [
+      {
+        id: "1",
+        type: "image" as const,
+        src: rajasthaniPalace,
+        alt: "Historic Chhatrapati Shivaji Maharaj Terminus showcasing Victorian Gothic architecture",
+        caption: "The UNESCO World Heritage Site serves as Mumbai's main railway station",
+        title: "Chhatrapati Shivaji Maharaj Terminus"
+      },
+      {
+        id: "2", 
+        type: "image" as const,
+        src: templeDravidian,
+        alt: "Ajanta Caves Buddhist paintings and sculptures",
+        caption: "Ancient Buddhist art masterpieces dating back to 2nd century BCE",
+        title: "Ajanta Caves Heritage Site"
+      }
+    ],
+    events: [
+      {
+        id: "1",
+        name: "Ganesh Chaturthi Festival",
+        description: "Grand celebration with elaborate pandals and processions",
+        date: "2024-09-07",
+        location: "Mumbai, Maharashtra",
+        type: "Religious Festival",
+        availability: "available" as const,
+        attendees: 150000,
+        maxAttendees: 200000
+      }
+    ],
+    contacts: [
+      {
+        department: "Maharashtra Tourism Development Corporation",
+        phone: "+91-22-2284-5678",
+        email: "info@maharashtratourism.gov.in",
+        website: "https://www.maharashtratourism.gov.in",
+        address: "CDO Hutments, Opposite Mantralaya, Mumbai - 400032",
+        hours: "Monday to Friday: 9:30 AM - 5:30 PM",
+        services: ["Tourist Information", "Booking Services", "Cultural Programs", "Heritage Tours"]
+      }
+    ]
   },
   "karnataka": {
     name: "Karnataka",
@@ -52,7 +120,41 @@ const stateData = {
     color: "from-yellow-500 to-orange-600",
     festivals: ["Mysore Dasara", "Ugadi", "Karaga", "Teej"],
     languages: ["Kannada", "Hindi", "English"],
-    famousFor: ["Mysore Palace", "IT Hub", "Coffee", "Silk"]
+    famousFor: ["Mysore Palace", "IT Hub", "Coffee", "Silk"],
+    media: [
+      {
+        id: "1",
+        type: "image" as const,
+        src: mysorePalace,
+        alt: "Illuminated Mysore Palace during Dasara festival with Indo-Saracenic architecture",
+        caption: "The royal residence lights up with thousands of bulbs during celebrations",
+        title: "Mysore Palace Illumination"
+      }
+    ],
+    events: [
+      {
+        id: "1",
+        name: "Mysore Dasara",
+        description: "Royal festival with grand processions and cultural programs",
+        date: "2024-10-15",
+        location: "Mysore, Karnataka",
+        type: "Cultural Festival",
+        availability: "available" as const,
+        attendees: 80000,
+        maxAttendees: 100000
+      }
+    ],
+    contacts: [
+      {
+        department: "Karnataka State Tourism Development Corporation",
+        phone: "+91-80-2235-2828",
+        email: "info@kstdc.co.in",
+        website: "https://www.kstdc.co.in",
+        address: "No.10/4, Kasturba Road Cross, Bengaluru - 560001",
+        hours: "Monday to Saturday: 10:00 AM - 5:00 PM",
+        services: ["Tourism Information", "Palace Tours", "Cultural Events", "Accommodation Booking"]
+      }
+    ]
   },
   "tamil-nadu": {
     name: "Tamil Nadu",
@@ -77,7 +179,41 @@ const stateData = {
     color: "from-red-500 to-pink-600",
     festivals: ["Pongal", "Thaipusam", "Karthigai Deepam", "Navaratri"],
     languages: ["Tamil", "English", "Telugu"],
-    famousFor: ["Bharatanatyam", "Temples", "Carnatic Music", "Silk Sarees"]
+    famousFor: ["Bharatanatyam", "Temples", "Carnatic Music", "Silk Sarees"],
+    media: [
+      {
+        id: "1",
+        type: "image" as const,
+        src: templeDravidian,
+        alt: "Meenakshi Temple gopurams with intricate Dravidian architecture and colorful sculptures",
+        caption: "The magnificent temple complex showcases centuries of Tamil architectural excellence",
+        title: "Meenakshi Temple Madurai"
+      }
+    ],
+    events: [
+      {
+        id: "1",
+        name: "Pongal Festival",
+        description: "Tamil harvest festival celebrating nature and agriculture",
+        date: "2024-01-15",
+        location: "Chennai, Tamil Nadu",
+        type: "Harvest Festival",
+        availability: "available" as const,
+        attendees: 200000,
+        maxAttendees: 250000
+      }
+    ],
+    contacts: [
+      {
+        department: "Tamil Nadu Tourism Development Corporation",
+        phone: "+91-44-2538-3333",
+        email: "info@tamilnadutourism.org",
+        website: "https://www.tamilnadutourism.org",
+        address: "Tourism Complex, No.2, Wallajah Road, Chennai - 600002",
+        hours: "Monday to Friday: 9:00 AM - 6:00 PM",
+        services: ["Temple Tours", "Cultural Programs", "Classical Dance", "Heritage Walks"]
+      }
+    ]
   },
   "kerala": {
     name: "Kerala",
@@ -102,961 +238,422 @@ const stateData = {
     color: "from-green-500 to-teal-600",
     festivals: ["Onam", "Vishu", "Thrissur Pooram", "Christmas"],
     languages: ["Malayalam", "English", "Tamil"],
-    famousFor: ["Backwaters", "Ayurveda", "Spices", "Kathakali"]
-  },
-  "rajasthan": {
-    name: "Rajasthan",
-    capital: "Jaipur",
-    description: "Rajasthan, the Land of Kings, is known for its royal palaces, desert landscapes, colorful festivals, and rich warrior heritage. The state embodies the grandeur of medieval India with magnificent forts and vibrant culture.",
-    traditions: [
-      "Ghoomar - Traditional folk dance of Rajasthani women with graceful spins",
-      "Desert Festival - Cultural celebration in Jaisalmer showcasing folk traditions",
-      "Kathputli - Traditional puppet shows narrating heroic tales",
-      "Pushkar Camel Fair - Annual gathering celebrating rural traditions",
-      "Teej - Monsoon festival celebrated with songs and traditional attire"
+    famousFor: ["Backwaters", "Ayurveda", "Spices", "Kathakali"],
+    media: [
+      {
+        id: "1",
+        type: "image" as const,
+        src: keralaBackwaters,
+        alt: "Serene Kerala backwaters with traditional houseboats and coconut palms",
+        caption: "The tranquil waterways offer a glimpse into village life and natural beauty",
+        title: "Kerala Backwater Paradise"
+      }
     ],
-    heritage: [
-      "Amber Fort - Magnificent hilltop palace in Jaipur with mirror work",
-      "Mehrangarh Fort - Imposing fortress in Jodhpur overlooking the blue city",
-      "Lake Palace - Floating palace in Udaipur, now a luxury hotel",
-      "Jaisalmer Fort - Living fort in the Thar Desert with golden architecture",
-      "Hawa Mahal - Palace of Winds with unique facade in Jaipur"
+    events: [
+      {
+        id: "1",
+        name: "Onam Festival",
+        description: "Kerala's harvest festival with traditional boat races and cultural programs",
+        date: "2024-09-15",
+        location: "Kochi, Kerala",
+        type: "Harvest Festival",
+        availability: "available" as const,
+        attendees: 300000,
+        maxAttendees: 400000
+      }
     ],
-    culture: "Rajasthani culture celebrates bravery, hospitality, and artistic excellence. The state has preserved royal traditions, folk arts, and warrior ethics. The concept of 'Mehmaan Nawazi' (guest hospitality) is deeply rooted in Rajasthani culture.",
-    cuisine: "Rajasthani cuisine includes desert-adapted dishes like Dal-Bati-Churma (lentils with wheat balls), Laal Maas (spicy meat curry), Ghevar (sweet delicacy), and various preparations designed for long shelf life. The thali tradition offers multiple flavors in one meal.",
-    color: "from-pink-500 to-purple-600",
-    festivals: ["Teej", "Gangaur", "Desert Festival", "Diwali"],
-    languages: ["Hindi", "Rajasthani", "English"],
-    famousFor: ["Palaces", "Desert", "Folk Music", "Handicrafts"]
-  },
-  "west-bengal": {
-    name: "West Bengal",
-    capital: "Kolkata",
-    description: "West Bengal is the cultural capital of India, known for its intellectual traditions, artistic heritage, and significant contribution to the Indian renaissance. The state has produced Nobel laureates, renowned artists, and literary giants.",
-    traditions: [
-      "Durga Puja - Grand festival celebrating Goddess Durga with artistic pandals",
-      "Kali Puja - Festival of lights honoring Goddess Kali with devotional fervor",
-      "Poila Boishakh - Bengali New Year celebrated with traditional rituals",
-      "Baul Music - Mystical folk music tradition by wandering minstrels",
-      "Kali Puja - Diwali celebration unique to Bengal with clay lamps"
-    ],
-    heritage: [
-      "Victoria Memorial - Colonial architectural masterpiece in white marble",
-      "Howrah Bridge - Iconic cantilever bridge over river Hooghly",
-      "Dakshineswar Temple - Sacred temple complex associated with Ramakrishna",
-      "Sundarbans - UNESCO World Heritage mangrove forests with Royal Bengal Tigers",
-      "Santiniketan - Visva-Bharati University founded by Rabindranath Tagore"
-    ],
-    culture: "Bengali culture emphasizes literature, music, intellectual discourse, and family bonds. The state values artistic expression, social reform, and educational excellence. The philosophy of 'Humanism' and appreciation for arts define Bengali culture.",
-    cuisine: "Bengali cuisine features fish and rice as staples, famous sweets like Rasgulla and Sandesh, and various preparations with mustard oil and panch phoron spices. From hilsa fish curry to mishti doi (sweet yogurt), Bengali food celebrates subtle flavors and traditional cooking methods.",
-    color: "from-blue-500 to-indigo-600",
-    festivals: ["Durga Puja", "Kali Puja", "Poila Boishakh", "Diwali"],
-    languages: ["Bengali", "Hindi", "English"],
-    famousFor: ["Literature", "Sweets", "Durga Puja", "Art"]
-  },
-  "gujarat": {
-    name: "Gujarat",
-    capital: "Gandhinagar",
-    description: "Gujarat is known for its entrepreneurial spirit, colorful festivals, ancient Indus Valley heritage, and being the birthplace of Mahatma Gandhi. The state combines business acumen with rich cultural traditions.",
-    traditions: [
-      "Navratri - Nine-day festival with Garba and Dandiya Raas dancing",
-      "Rann Utsav - Cultural festival in the white desert of Kutch",
-      "International Kite Festival - Celebrating Makar Sankranti with colorful kites",
-      "Janmashtami - Grand celebrations of Lord Krishna's birth with human pyramids",
-      "Sharad Purnima - Full moon festival celebrated with traditional dances"
-    ],
-    heritage: [
-      "Somnath Temple - Sacred Jyotirlinga temple rebuilt multiple times",
-      "Dwarkadhish Temple - Legendary kingdom of Lord Krishna",
-      "Rani ki Vav - UNESCO World Heritage stepwell with intricate carvings",
-      "Champaner-Pavagadh - Archaeological park with Islamic architecture",
-      "Sabarmati Ashram - Gandhi's residence and center of independence movement"
-    ],
-    culture: "Gujarati culture values business ethics, vegetarianism, and community harmony. The state has strong traditions of trade, philanthropy, and peaceful coexistence. The Gujarati philosophy of 'Sarve Bhavantu Sukhinah' (may all be happy) guides social interactions.",
-    cuisine: "Gujarati cuisine is predominantly vegetarian, featuring dishes like Dhokla (steamed cake), Thepla (spiced flatbread), Undhiyu (mixed vegetable curry), and elaborate thali meals with perfect balance of sweet, salty, and savory flavors. Each meal ends with traditional sweets.",
-    color: "from-amber-500 to-orange-500",
-    festivals: ["Navratri", "Diwali", "Kite Festival", "Janmashtami"],
-    languages: ["Gujarati", "Hindi", "English"],
-    famousFor: ["Business", "Textiles", "Garba Dance", "Vegetarian Food"]
-  },
-  "punjab": {
-    name: "Punjab",
-    capital: "Chandigarh",
-    description: "Punjab, the land of five rivers, is known for its rich agricultural heritage, Sikh traditions, vibrant festivals, and warm hospitality. The state is India's granary and birthplace of Sikhism.",
-    traditions: [
-      "Bhangra - Energetic folk dance celebrating harvest and joy",
-      "Giddha - Traditional women's folk dance with rhythmic clapping",
-      "Baisakhi - Harvest festival and Sikh New Year celebration",
-      "Lohri - Winter festival with bonfire celebrations and folk songs",
-      "Karva Chauth - Festival where married women fast for their husbands"
-    ],
-    heritage: [
-      "Golden Temple - Sacred Sikh pilgrimage site with golden architecture",
-      "Jallianwala Bagh - Historic memorial of the independence struggle",
-      "Anandpur Sahib - Birthplace of Khalsa Panth and Sikh military tradition",
-      "Patiala Palace - Royal architectural heritage of erstwhile princely state",
-      "Wagah Border - Daily flag ceremony showcasing patriotic fervor"
-    ],
-    culture: "Punjabi culture emphasizes courage, community service (seva), and celebration of life. Sikhism's values of equality, service, and brotherhood are central to the culture. The concept of 'Sarbat da Bhala' (welfare of all) guides Punjabi society.",
-    cuisine: "Punjabi cuisine includes rich dishes like Butter Chicken, Sarson da Saag with Makki di Roti, Chole Bhature, and Amritsari Kulcha. The food is characterized by generous use of dairy products, wheat, and robust flavors. Lassi (yogurt drink) is a traditional accompaniment.",
-    color: "from-emerald-500 to-green-600",
-    festivals: ["Baisakhi", "Lohri", "Diwali", "Holi"],
-    languages: ["Punjabi", "Hindi", "English"],
-    famousFor: ["Golden Temple", "Agriculture", "Bhangra", "Food"]
-  },
-  "odisha": {
-    name: "Odisha",
-    capital: "Bhubaneswar",
-    description: "Odisha is renowned for its ancient temples, classical dance forms, traditional crafts, and the famous Jagannath Temple in Puri. The state preserves ancient Kalinga heritage while embracing modern development.",
-    traditions: [
-      "Jagannath Rath Yatra - Grand chariot festival in Puri drawing millions",
-      "Odissi Dance - Classical dance form with spiritual themes and graceful movements",
-      "Pattachitra - Traditional cloth painting art depicting mythological stories",
-      "Konark Dance Festival - Annual celebration of classical arts",
-      "Chhau Dance - Folk dance with masks depicting mythological characters"
-    ],
-    heritage: [
-      "Konark Sun Temple - UNESCO World Heritage Site designed as sun god's chariot",
-      "Jagannath Temple - Sacred pilgrimage destination in Puri",
-      "Udayagiri and Khandagiri Caves - Ancient Jain rock-cut caves",
-      "Lingaraj Temple - Magnificent example of Kalinga architecture",
-      "Chilika Lake - Largest brackish water lagoon in India"
-    ],
-    culture: "Odia culture blends Hindu traditions with tribal heritage. The state values classical arts, spiritual practices, environmental harmony, and community cooperation. The philosophy of 'Jagannath consciousness' unites diverse communities.",
-    cuisine: "Odia cuisine features unique dishes like Pakhala (fermented rice), Dalma (lentils with vegetables), Chhena Poda (cheese dessert), and various seafood preparations from coastal regions. Temple food traditions include mahaprasad offerings.",
-    color: "from-cyan-500 to-blue-600",
-    festivals: ["Jagannath Rath Yatra", "Durga Puja", "Kali Puja", "Diwali"],
-    languages: ["Odia", "Hindi", "English"],
-    famousFor: ["Jagannath Temple", "Konark Sun Temple", "Odissi Dance", "Handicrafts"]
-  },
-  "uttar-pradesh": {
-    name: "Uttar Pradesh",
-    capital: "Lucknow",
-    description: "Uttar Pradesh, India's most populous state, is home to the iconic Taj Mahal, ancient city of Varanasi, and rich Mughal heritage. The state has been the heartland of Indian civilization and spirituality.",
-    traditions: [
-      "Ganga Aarti - Evening prayer ceremony on the ghats of Varanasi",
-      "Holi - Festival of colors celebrated with great enthusiasm",
-      "Ram Leela - Dramatic performances depicting Ramayana stories",
-      "Kumbh Mela - World's largest religious gathering held every 12 years",
-      "Lucknowi Tehzeeb - Refined cultural etiquette of Lucknow"
-    ],
-    heritage: [
-      "Taj Mahal - UNESCO World Heritage Site and wonder of the world",
-      "Fatehpur Sikri - Abandoned Mughal city with magnificent architecture",
-      "Varanasi Ghats - Ancient spiritual center on river Ganges",
-      "Agra Fort - Magnificent Mughal fortress",
-      "Sarnath - Buddhist pilgrimage site where Buddha gave first sermon"
-    ],
-    culture: "UP culture represents diverse traditions from Hindu spirituality to Islamic heritage. The state values religious tolerance, classical arts, and academic excellence. Ancient gurukul traditions coexist with modern educational institutions.",
-    cuisine: "UP cuisine includes Awadhi delicacies like Biryani, Kebabs, Korma, and sweets like Petha from Agra. Each region offers specialties - from Banarasi paan to Lucknowi cuisine known for refined flavors and cooking techniques.",
-    color: "from-purple-500 to-indigo-600",
-    festivals: ["Holi", "Diwali", "Ram Navami", "Eid"],
-    languages: ["Hindi", "Urdu", "English"],
-    famousFor: ["Taj Mahal", "Varanasi", "Awadhi Cuisine", "Classical Music"]
-  },
-  "madhya-pradesh": {
-    name: "Madhya Pradesh",
-    capital: "Bhopal",
-    description: "Madhya Pradesh, the heart of India, is known for its ancient temples, tribal culture, wildlife sanctuaries, and architectural marvels. The state preserves prehistoric rock art and medieval monuments.",
-    traditions: [
-      "Khajuraho Dance Festival - Classical dance performances at temple complex",
-      "Gond Art - Tribal art form using dots and lines in vibrant colors",
-      "Bhagoria - Tribal festival where young people choose life partners",
-      "Malwa Folk Songs - Traditional music celebrating rural life",
-      "Bundeli Culture - Regional traditions of Bundelkhand region"
-    ],
-    heritage: [
-      "Khajuraho Temples - UNESCO World Heritage Site with erotic sculptures",
-      "Sanchi Stupa - Ancient Buddhist monument with Mauryan architecture",
-      "Bhimbetka Caves - UNESCO site with prehistoric rock paintings",
-      "Gwalior Fort - Magnificent hilltop fortress with palaces",
-      "Mandu - Ruined city with Afghan architecture"
-    ],
-    culture: "MP culture blends tribal traditions with mainstream Indian culture. The state values nature worship, community festivals, and artistic expression. Tribal communities maintain ancient customs alongside modern development.",
-    cuisine: "MP cuisine includes traditional dishes like Poha-Jalebi, Dal Bafla, Bhutte ka Kees, and tribal preparations using forest produce. Each region offers distinct flavors from spicy Indori street food to subtle Malwa cuisine.",
-    color: "from-teal-500 to-cyan-600",
-    festivals: ["Khajuraho Dance Festival", "Navratri", "Holi", "Diwali"],
-    languages: ["Hindi", "Gondi", "English"],
-    famousFor: ["Khajuraho Temples", "Tiger Reserves", "Tribal Culture", "Handicrafts"]
-  },
-  "assam": {
-    name: "Assam",
-    capital: "Dispur",
-    description: "Assam, the gateway to Northeast India, is famous for tea gardens, Bihu festival, one-horned rhinoceros, and rich Assamese culture. The state is known for its natural beauty and cultural diversity.",
-    traditions: [
-      "Bihu - New Year festival with traditional dances and songs",
-      "Sattriya - Classical dance form developed in Vaishnavite monasteries",
-      "Japi - Traditional hat made from bamboo and palm leaves",
-      "Tea Culture - Traditional tea ceremonies and cultivation practices",
-      "Borgeet - Devotional songs composed by Shankardev"
-    ],
-    heritage: [
-      "Kamakhya Temple - Sacred Shakti Peetha on Neelachal Hill",
-      "Kaziranga National Park - UNESCO site home to one-horned rhinoceros",
-      "Majuli Island - World's largest river island with Vaishnavite culture",
-      "Sivasagar - Ancient Ahom capital with temples and palaces",
-      "Tea Gardens - Colonial-era plantations in Assam hills"
-    ],
-    culture: "Assamese culture emphasizes harmony with nature, community cooperation, and religious tolerance. The neo-Vaishnavite movement by Shankardev shaped cultural identity. Respect for elders and environmental conservation are core values.",
-    cuisine: "Assamese cuisine features rice as staple with fish, duck, pigeon, and leafy vegetables. Traditional dishes include fish curry, pitika (mashed preparations), and various rice preparations. Tea is an integral part of daily life.",
-    color: "from-green-600 to-emerald-700",
-    festivals: ["Bihu", "Durga Puja", "Kali Puja", "Poush Parbon"],
-    languages: ["Assamese", "Bengali", "Hindi"],
-    famousFor: ["Tea", "Silk", "Kaziranga", "Bihu Dance"]
-  },
-  "bihar": {
-    name: "Bihar",
-    capital: "Patna",
-    description: "Bihar, the birthplace of Buddhism and Jainism, is rich in ancient history and spiritual heritage. The state was the center of powerful empires like Maurya and Gupta and continues to be important for pilgrimage.",
-    traditions: [
-      "Chhath Puja - Ancient festival worshipping Sun god with river rituals",
-      "Madhubani Art - Traditional folk art with intricate patterns",
-      "Sama Chakeva - Folk festival celebrating brother-sister relationship",
-      "Bhojpuri Folk Songs - Traditional music expressing rural life",
-      "Gamghar - Traditional wedding ceremonies with ancient rituals"
-    ],
-    heritage: [
-      "Mahabodhi Temple - UNESCO site where Buddha attained enlightenment",
-      "Nalanda University - Ancient center of learning and Buddhist education",
-      "Rajgir - Historic city with Buddhist and Jain significance",
-      "Patna Museum - Repository of Mauryan and Gupta period artifacts",
-      "Vikramshila University - Ancient Buddhist university ruins"
-    ],
-    culture: "Bihari culture values education, spirituality, and family traditions. The state has contributed significantly to Indian philosophy, literature, and freedom struggle. Respect for teachers and scholarly pursuits define Bihari ethos.",
-    cuisine: "Bihari cuisine includes traditional dishes like Litti-Chokha, Sattu preparations, fish curry, and various sweets. The food reflects agricultural abundance with extensive use of grains, pulses, and seasonal vegetables.",
-    color: "from-yellow-600 to-amber-600",
-    festivals: ["Chhath Puja", "Holi", "Diwali", "Dussehra"],
-    languages: ["Hindi", "Bhojpuri", "Maithili"],
-    famousFor: ["Buddhism", "Madhubani Art", "Chhath Puja", "Ancient Universities"]
-  },
-  "himachal-pradesh": {
-    name: "Himachal Pradesh",
-    capital: "Shimla",
-    description: "Himachal Pradesh, the land of gods, is known for its pristine hill stations, Buddhist monasteries, adventure tourism, and apple orchards. The state offers spiritual retreats and natural beauty.",
-    traditions: [
-      "Kullu Dussehra - Unique celebration with local deities procession",
-      "Kinnauri Folk Dance - Traditional dances of tribal communities",
-      "Chamba Rumal - Traditional embroidery work on handkerchiefs",
-      "Himachali Folk Songs - Mountain ballads celebrating nature",
-      "Buddhist Festivals - Monastery celebrations with masked dances"
-    ],
-    heritage: [
-      "Shimla - Colonial hill station and former British summer capital",
-      "Dharamshala - Home to Dalai Lama and Tibetan government in exile",
-      "Manali - Ancient town with Hadimba temple and mountain culture",
-      "Key Monastery - Ancient Buddhist monastery in Spiti Valley",
-      "Kangra Fort - Ancient fort overlooking Kangra valley"
-    ],
-    culture: "Himachali culture blends Hindu traditions with Buddhist influences and tribal customs. The state values environmental conservation, community cooperation, and peaceful coexistence of different communities.",
-    cuisine: "Himachali cuisine includes dishes like Dham (festive meal), Chana Madra, Babru, and various preparations using local ingredients like rajma, rice, and seasonal vegetables. Apple-based products are specialty items.",
-    color: "from-blue-600 to-indigo-700",
-    festivals: ["Kullu Dussehra", "Diwali", "Losar", "Shivratri"],
-    languages: ["Hindi", "Pahari", "English"],
-    famousFor: ["Hill Stations", "Adventure Sports", "Apples", "Buddhism"]
-  },
-  "haryana": {
-    name: "Haryana",
-    capital: "Chandigarh",
-    description: "Haryana, surrounding Delhi, is known for its agricultural prosperity, wrestling tradition, folk music, and rapid industrial development. The state has ancient historical significance with sites from Mahabharata.",
-    traditions: [
-      "Jhumar - Traditional folk dance performed during harvest",
-      "Saang - Folk theater tradition narrating historical tales",
-      "Wrestling - Ancient tradition producing Olympic medalists",
-      "Teej - Monsoon festival celebrated by women",
-      "Karva Chauth - Festival where wives fast for husbands' longevity"
-    ],
-    heritage: [
-      "Kurukshetra - Battlefield of Mahabharata and birthplace of Bhagavad Gita",
-      "Panipat - Historic battleground that shaped Indian history",
-      "Surajkund - Ancient reservoir with beautiful stonework",
-      "Pinjore Gardens - Mughal-style garden with architectural beauty",
-      "Thanesar - Ancient town with religious and historical significance"
-    ],
-    culture: "Haryanvi culture emphasizes agricultural values, physical strength, and community solidarity. The state values hard work, joint family system, and traditional gender roles while adapting to modernization.",
-    cuisine: "Haryanvi cuisine includes hearty dishes like Bajra Roti with Sarson ka Saag, Kadhi-Chawal, Besan Masala Roti, and fresh dairy products. The food reflects agricultural abundance and nutritious rural diet.",
-    color: "from-orange-600 to-red-700",
-    festivals: ["Teej", "Karva Chauth", "Holi", "Diwali"],
-    languages: ["Hindi", "Haryanvi", "Punjabi"],
-    famousFor: ["Wrestling", "Agriculture", "Kurukshetra", "Folk Music"]
-  },
-  "jharkhand": {
-    name: "Jharkhand",
-    capital: "Ranchi",
-    description: "Jharkhand, rich in mineral resources and tribal culture, is known for its waterfalls, forests, and indigenous traditions. The state was carved out of Bihar to preserve tribal identity and natural heritage.",
-    traditions: [
-      "Sarhul - Spring festival worshipping nature and trees",
-      "Karma - Harvest festival with traditional dances around Karma tree",
-      "Tribal Dances - Various folk dances of different tribal communities",
-      "Paitkar Art - Traditional scroll painting by tribal artists",
-      "Tusu Festival - Folk festival celebrated during winter season"
-    ],
-    heritage: [
-      "Betla National Park - Wildlife sanctuary with diverse flora and fauna",
-      "Hundru Falls - Spectacular waterfall formed by river Subarnarekha",
-      "Rajrappa Temple - Sacred site at confluence of rivers",
-      "Parasnath Hills - Highest peak and Jain pilgrimage site",
-      "Tribal Museums - Showcasing indigenous culture and traditions"
-    ],
-    culture: "Jharkhand culture is predominantly tribal with strong connection to nature and community living. The state values environmental conservation, traditional knowledge systems, and collective decision-making processes.",
-    cuisine: "Jharkhand cuisine includes tribal preparations like Handia (rice beer), various preparations using forest produce, bamboo shoot curry, and dishes made from millets and indigenous grains.",
-    color: "from-green-700 to-teal-700",
-    festivals: ["Sarhul", "Karma", "Sohrai", "Tusu"],
-    languages: ["Hindi", "Santali", "Ho", "Mundari"],
-    famousFor: ["Tribal Culture", "Minerals", "Waterfalls", "Forests"]
-  },
-  "andhra-pradesh": {
-    name: "Andhra Pradesh",
-    capital: "Amaravati",
-    description: "Andhra Pradesh is known for its ancient temples, classical dance traditions, spicy cuisine, and rich Telugu culture. The state has significant Buddhist heritage and coastal beauty.",
-    traditions: [
-      "Kuchipudi - Classical dance form originated in Kuchipudi village",
-      "Ugadi - Telugu New Year celebrated with traditional rituals",
-      "Bonalu - Festival honoring goddess Mahakali with offerings",
-      "Sankranti - Harvest festival with kite flying and rangoli",
-      "Bathukamma - Floral festival celebrated by women during Navaratri"
-    ],
-    heritage: [
-      "Tirupati Balaji Temple - One of richest temples and pilgrimage site",
-      "Amaravati Stupa - Ancient Buddhist monument with sculptural art",
-      "Charminar - Iconic monument symbolizing Hyderabad's heritage",
-      "Srisailam Temple - Sacred Jyotirlinga temple in Nallamala hills",
-      "Lepakshi Temple - Vijayanagara architecture with hanging pillar"
-    ],
-    culture: "Andhra culture emphasizes devotion, classical arts, and Telugu literature. The state values family traditions, hospitality, and religious festivals. Telugu film industry contributes significantly to cultural identity.",
-    cuisine: "Andhra cuisine is famous for its spicy preparations like Hyderabadi Biryani, Gongura curry, Pesarattu, and various rice dishes. The coastal regions offer seafood specialties while inland areas feature vegetarian delicacies.",
-    color: "from-red-600 to-pink-700",
-    festivals: ["Ugadi", "Sankranti", "Dussehra", "Diwali"],
-    languages: ["Telugu", "Hindi", "English"],
-    famousFor: ["Tirupati Temple", "Kuchipudi", "Spicy Food", "Pearls"]
+    contacts: [
+      {
+        department: "Kerala Tourism Development Corporation",
+        phone: "+91-471-2321-132",
+        email: "info@keralatourism.org",
+        website: "https://www.keralatourism.org",
+        address: "Park View, Thiruvananthapuram - 695033",
+        hours: "Monday to Friday: 9:00 AM - 5:30 PM",
+        services: ["Backwater Tours", "Ayurveda Centers", "Spice Gardens", "Cultural Shows"]
+      }
+    ]
   },
   "telangana": {
     name: "Telangana",
     capital: "Hyderabad",
-    description: "Telangana, India's youngest state, is known for its rich Nizami heritage, IT industry, and distinctive Telugu culture. Hyderabad serves as a major technology hub while preserving historical grandeur.",
+    description: "Telangana, the land of Nizams, is known for its rich history, architectural marvels, and delectable Hyderabadi cuisine. The state has emerged as a major IT hub while preserving its cultural heritage.",
     traditions: [
-      "Bathukamma - Floral festival unique to Telangana celebrating goddess",
-      "Bonalu - Traditional festival offering prayers to goddess Mahakali",
-      "Sammakka Saralamma Jatara - Tribal festival attracting millions",
-      "Dussehra - Grand celebration with cultural programs",
-      "Ramzan - Islamic festival celebrated with great fervor in Hyderabad"
+      "Bonalu - Festival honoring Goddess Mahakali with colorful processions",
+      "Bathukamma - Floral festival celebrating the goddess of womanhood",
+      "Sammakka Saralamma Jatara - Tribal festival with millions of devotees",
+      "Deccan Painting - Miniature art form from the royal courts",
+      "Qawwali - Sufi musical tradition popular in the region"
     ],
     heritage: [
-      "Golconda Fort - Medieval fortress famous for acoustic engineering",
-      "Qutb Shahi Tombs - Architectural marvels of Deccan sultanate",
       "Charminar - Iconic monument and symbol of Hyderabad",
-      "Ramappa Temple - UNESCO World Heritage Site with Kakatiya architecture",
-      "Warangal Fort - Ruins of Kakatiya dynasty capital"
+      "Golconda Fort - Medieval fortress known for acoustic marvels",
+      "Qutb Shahi Tombs - Architectural heritage of the Qutb Shahi dynasty",
+      "Chowmahalla Palace - Seat of the Asaf Jahi dynasty",
+      "Thousand Pillar Temple - Ancient Kakatiya architecture in Warangal"
     ],
-    culture: "Telangana culture blends Telugu traditions with Islamic influences from Nizami rule. The state values hospitality, pluralism, and cultural synthesis. Modern technology coexists with traditional crafts.",
-    cuisine: "Telangana cuisine includes distinctive dishes like Hyderabadi Biryani, Haleem, Qubani ka Meetha, and traditional preparations like Jonna Rotte (sorghum bread) and Gongura curry reflecting both royal and rural traditions.",
+    culture: "Telangana culture is a blend of Telugu traditions and Islamic influences. The state is known for its hospitality, poetry, and classical music. The concept of 'Ganga-Jamuni Tehzeeb' (composite culture) is evident in daily life.",
+    cuisine: "Hyderabadi cuisine features the world-famous Biryani, Haleem, Nihari, and traditional sweets like Double Ka Meetha. The cuisine represents a perfect fusion of Mughlai and Telugu flavors, making it one of India's most celebrated regional cuisines.",
     color: "from-purple-600 to-indigo-700",
-    festivals: ["Bathukamma", "Bonalu", "Dussehra", "Eid"],
-    languages: ["Telugu", "Urdu", "Hindi"],
-    famousFor: ["IT Industry", "Biryani", "Charminar", "Pearls"]
+    festivals: ["Bonalu", "Bathukamma", "Eid", "Diwali"],
+    languages: ["Telugu", "Urdu", "Hindi", "English"],
+    famousFor: ["Hyderabadi Biryani", "IT Industry", "Charminar", "Pearls"],
+    media: [
+      {
+        id: "1",
+        type: "image" as const,
+        src: charminariTelangana,
+        alt: "Historic Charminar monument in Hyderabad with Islamic architecture and bustling market",
+        caption: "The iconic 16th-century monument stands as a symbol of Hyderabadi heritage",
+        title: "Charminar Hyderabad"
+      }
+    ],
+    events: [
+      {
+        id: "1",
+        name: "Bonalu Festival",
+        description: "Traditional festival honoring Goddess Mahakali",
+        date: "2024-07-28",
+        location: "Hyderabad, Telangana",
+        type: "Religious Festival",
+        availability: "available" as const,
+        attendees: 100000,
+        maxAttendees: 150000
+      }
+    ],
+    contacts: [
+      {
+        department: "Telangana State Tourism Development Corporation",
+        phone: "+91-40-2345-6789",
+        email: "info@telangana.gov.in",
+        website: "https://www.telangana.gov.in",
+        address: "Tourism Bhavan, Himayatnagar, Hyderabad - 500029",
+        hours: "Monday to Saturday: 10:00 AM - 5:30 PM",
+        services: ["Heritage Tours", "Cultural Events", "Cuisine Tours", "Palace Visits"]
+      }
+    ]
   },
-  "chhattisgarh": {
-    name: "Chhattisgarh",
-    capital: "Raipur",
-    description: "Chhattisgarh, rich in mineral resources and tribal culture, is known for its ancient temples, traditional crafts, and natural beauty. The state preserves indigenous traditions while developing modern industries.",
-    traditions: [
-      "Bastar Dussehra - Unique 75-day festival celebrating tribal traditions",
-      "Panthi Dance - Traditional dance form performed during festivals",
-      "Dhokra Art - Ancient metal casting technique by tribal artisans",
-      "Folk Music - Various tribal musical traditions with bamboo instruments",
-      "Hareli - Agricultural festival marking beginning of monsoon"
-    ],
-    heritage: [
-      "Chitrakote Falls - India's widest waterfall known as 'Niagara of India'",
-      "Bhoramdeo Temple - Ancient temple complex called 'Khajuraho of Chhattisgarh'",
-      "Sirpur - Archaeological site with Buddhist and Hindu monuments",
-      "Bastar Palace - Royal residence showcasing tribal architecture",
-      "Tribal Museums - Preserving indigenous art and culture"
-    ],
-    culture: "Chhattisgarh culture is predominantly tribal with rich oral traditions, nature worship, and community festivals. The state values environmental harmony, traditional crafts, and collective living.",
-    cuisine: "Chhattisgarh cuisine includes traditional dishes like Chila, Farra, Petha curry, and various preparations using rice, which is the staple food. Tribal communities have unique cooking methods using bamboo and forest produce.",
-    color: "from-emerald-600 to-green-700",
-    festivals: ["Bastar Dussehra", "Hareli", "Pola", "Teej"],
-    languages: ["Hindi", "Chhattisgarhi", "Gondi"],
-    famousFor: ["Tribal Culture", "Waterfalls", "Handicrafts", "Steel"]
-  },
-  "goa": {
-    name: "Goa",
-    capital: "Panaji",
-    description: "Goa, India's smallest state, is a tropical paradise known for its pristine beaches, Portuguese colonial heritage, vibrant nightlife, and unique Indo-Portuguese culture that blends Indian and European influences.",
-    traditions: [
-      "Carnival - Colorful festival with parades, music, and dancing",
-      "Shigmo - Spring festival celebrated with folk dances and floats",
-      "Feast of St. Francis Xavier - Christian pilgrimage and celebration",
-      "Sao Joao - Monsoon festival with jumping into wells tradition",
-      "Ganesh Chaturthi - Elaborate celebrations with creative pandals"
-    ],
-    heritage: [
-      "Basilica of Bom Jesus - UNESCO World Heritage Site housing St. Francis Xavier",
-      "Old Goa Churches - Colonial Portuguese religious architecture",
-      "Fort Aguada - Portuguese fortress overlooking Arabian Sea",
-      "Fontainhas - Latin Quarter with colorful Portuguese houses",
-      "Spice Plantations - Colonial-era spice cultivation sites"
-    ],
-    culture: "Goan culture is a unique blend of Indian traditions and Portuguese influences. The state values religious harmony, artistic expression, and laid-back lifestyle. Music, dance, and festivities are integral to Goan identity.",
-    cuisine: "Goan cuisine features seafood specialties like Fish Curry Rice, Vindaloo, Xacuti, and Portuguese-influenced dishes like Bebinca and Sorpotel. Feni (cashew liquor) and coconut-based preparations are signature elements.",
-    color: "from-cyan-600 to-blue-700",
-    festivals: ["Carnival", "Shigmo", "Christmas", "Ganesh Chaturthi"],
-    languages: ["Konkani", "Portuguese", "English", "Hindi"],
-    famousFor: ["Beaches", "Portuguese Heritage", "Seafood", "Nightlife"]
-  },
-  "uttarakhand": {
-    name: "Uttarakhand",
-    capital: "Dehradun",
-    description: "Uttarakhand, the land of gods, is known for its sacred Char Dham pilgrimage, majestic Himalayas, yoga capital Rishikesh, and pristine natural beauty. The state attracts spiritual seekers and adventure enthusiasts.",
-    traditions: [
-      "Ganga Aarti - Evening prayer ceremony at Har Ki Pauri, Haridwar",
-      "Kumaoni Folk Dance - Traditional mountain dances with regional music",
-      "Nanda Devi Raj Jat - Ancient pilgrimage trek to Nanda Devi peak",
-      "Phool Dei - Spring festival celebrating flowers and nature",
-      "International Yoga Day - Global celebration originated from Rishikesh"
-    ],
-    heritage: [
-      "Char Dham - Four sacred pilgrimage sites: Kedarnath, Badrinath, Gangotri, Yamunotri",
-      "Haridwar - Sacred city where Ganges enters plains",
-      "Rishikesh - World capital of yoga and meditation",
-      "Valley of Flowers - UNESCO World Heritage Site with alpine flowers",
-      "Jim Corbett National Park - India's oldest national park"
-    ],
-    culture: "Uttarakhand culture emphasizes spirituality, environmental conservation, and simple mountain life. The state values ancient Vedic traditions, yoga practices, and harmony with nature.",
-    cuisine: "Uttarakhand cuisine includes mountain delicacies like Kafuli, Phaanu, Bal Mithai, and various preparations using local grains like mandua and jhangora. The food reflects high-altitude living and nutritional needs.",
-    color: "from-indigo-600 to-purple-700",
-    festivals: ["Kumbh Mela", "Nanda Devi Fair", "Makar Sankranti", "Diwali"],
-    languages: ["Hindi", "Garhwali", "Kumaoni"],
-    famousFor: ["Char Dham", "Yoga", "Adventure Sports", "Hill Stations"]
-  },
-  "arunachal-pradesh": {
-    name: "Arunachal Pradesh",
-    capital: "Itanagar",
-    description: "Arunachal Pradesh, the land of rising sun, is known for its pristine natural beauty, diverse tribal cultures, Buddhist monasteries, and being the easternmost state where sun rises first in India.",
-    traditions: [
-      "Losar - Tibetan New Year celebrated by Buddhist communities",
-      "Nyokum - Festival of Nyishi tribe celebrating harvest",
-      "Solung - Festival of Adi tribe with traditional dances",
-      "Reh - Festival of Idu Mishmi tribe honoring ancestors",
-      "Monpa Festivals - Buddhist celebrations in Tawang region"
-    ],
-    heritage: [
-      "Tawang Monastery - Largest monastery in India with Tibetan architecture",
-      "Ziro Valley - UNESCO tentative site with Apatani tribal culture",
-      "Namdapha National Park - Biodiversity hotspot with rare species",
-      "Bomdila Monastery - Buddhist monastery with mountain views",
-      "Sela Pass - High-altitude pass connecting Tawang with rest of India"
-    ],
-    culture: "Arunachal culture is diverse with multiple tribal communities maintaining distinct traditions. The state values environmental conservation, community harmony, and preservation of indigenous customs.",
-    cuisine: "Arunachal cuisine varies by tribe but commonly includes rice, meat preparations, bamboo shoot dishes, and fermented foods. Thukpa (noodle soup) and momos reflect Tibetan influences.",
-    color: "from-teal-600 to-cyan-700",
-    festivals: ["Losar", "Dree", "Boori Boot", "Nyokum"],
-    languages: ["English", "Hindi", "Various tribal languages"],
-    famousFor: ["Sunrise Point", "Buddhism", "Tribal Culture", "Natural Beauty"]
-  },
-  "manipur": {
-    name: "Manipur",
-    capital: "Imphal",
-    description: "Manipur, the jewel of India, is known for its classical Manipuri dance, polo sport origin, scenic beauty, and rich cultural traditions. The state is famous for its martial arts and handloom textiles.",
-    traditions: [
-      "Manipuri Dance - Classical dance form with devotional themes",
-      "Polo - Traditional sport originated in Manipur",
-      "Lai Haraoba - Ancient festival celebrating local deities",
-      "Yaoshang - Holi celebration with traditional sports",
-      "Kang - Traditional game similar to field hockey"
-    ],
-    heritage: [
-      "Kangla Fort - Ancient seat of Manipur rulers",
-      "Loktak Lake - Largest freshwater lake in Northeast India",
-      "Ima Keithel - Women's market run entirely by women",
-      "Shree Govindajee Temple - Historic Vaishnavite temple",
-      "War Cemetery - Memorial for soldiers of World War II"
-    ],
-    culture: "Manipuri culture emphasizes classical arts, martial traditions, and Vaishnavite devotion. The state values women's empowerment, artistic excellence, and preservation of traditional sports.",
-    cuisine: "Manipuri cuisine includes dishes like Eromba, Singju, Kangshoi, and fish preparations with local herbs. The food reflects both valley and hill cultures with extensive use of fermented ingredients.",
-    color: "from-pink-600 to-red-700",
-    festivals: ["Lai Haraoba", "Yaoshang", "Kang", "Durga Puja"],
-    languages: ["Manipuri", "English", "Hindi"],
-    famousFor: ["Classical Dance", "Polo", "Handloom", "Martial Arts"]
-  },
-  "meghalaya": {
-    name: "Meghalaya",
-    capital: "Shillong",
-    description: "Meghalaya, the abode of clouds, is known for its living root bridges, highest rainfall, matrilineal society, and scenic hill stations. The state is famous for its unique Khasi and Garo cultures.",
-    traditions: [
-      "Living Root Bridges - Ancient bioengineering by Khasi tribes",
-      "Matrilineal Society - Unique social system where lineage follows mother",
-      "Shad Suk Mynsiem - Traditional Khasi dance celebrating spring",
-      "Wangala - Garo harvest festival with traditional drums",
-      "Ka Pomblang Nongkrem - Religious festival of Khasi community"
-    ],
-    heritage: [
-      "Cherrapunji - Wettest place on earth with unique geography",
-      "Mawlynnong - Asia's cleanest village with community tourism",
-      "Dawki - Crystal clear river with stunning natural beauty",
-      "Elephant Falls - Scenic waterfall near Shillong",
-      "Don Bosco Museum - Showcasing Northeast Indian cultures"
-    ],
-    culture: "Meghalaya culture is unique with matrilineal traditions where women are property inheritors. The state values environmental conservation, community cooperation, and indigenous knowledge systems.",
-    cuisine: "Meghalaya cuisine includes dishes like Jadoh (rice with meat), Tungrymbai (fermented soybean), Dohkhlieh (salad), and various pork preparations. The food reflects hill culture and indigenous ingredients.",
-    color: "from-green-800 to-emerald-800",
-    festivals: ["Shad Suk Mynsiem", "Wangala", "Christmas", "Durga Puja"],
-    languages: ["Khasi", "Garo", "English"],
-    famousFor: ["Living Root Bridges", "Rainfall", "Matrilineal Society", "Hill Stations"]
-  },
-  "mizoram": {
-    name: "Mizoram",
-    capital: "Aizawl",
-    description: "Mizoram, the land of blue mountains, is known for its bamboo forests, vibrant festivals, high literacy rate, and peaceful Mizo culture. The state has successful community-based governance.",
-    traditions: [
-      "Chapchar Kut - Spring festival celebrating bamboo cutting",
-      "Mim Kut - Post-harvest festival with traditional dances",
-      "Pawl Kut - Winter festival marking end of harvest season",
-      "Cheraw Dance - Traditional bamboo dance performed by women",
-      "Zawlbuk - Traditional bachelor dormitory system"
-    ],
-    heritage: [
-      "Reiek Tlang - Scenic hilltop with panoramic views",
-      "Phawngpui Peak - Highest peak in Mizoram",
-      "Vantawng Falls - Spectacular waterfall in Serchhip district",
-      "Solomon's Temple - Modern architectural marvel",
-      "Mizoram State Museum - Showcasing Mizo culture and history"
-    ],
-    culture: "Mizo culture emphasizes community cooperation, social harmony, and Christian values. The state values education, cleanliness, and peaceful coexistence with strong community institutions.",
-    cuisine: "Mizo cuisine includes dishes like Bai (vegetable stew), Sawhchiar (rice with meat), Vawksa Rep (smoked pork), and various bamboo shoot preparations. The food reflects hill culture and local ingredients.",
-    color: "from-blue-700 to-indigo-800",
-    festivals: ["Chapchar Kut", "Mim Kut", "Pawl Kut", "Christmas"],
-    languages: ["Mizo", "English", "Hindi"],
-    famousFor: ["Bamboo Dance", "Peaceful Society", "High Literacy", "Bamboo Products"]
-  },
-  "nagaland": {
-    name: "Nagaland",
-    capital: "Kohima",
-    description: "Nagaland, the land of festivals, is known for its vibrant Hornbill festival, diverse tribal cultures, warrior traditions, and unique Naga heritage. The state celebrates unity in diversity.",
-    traditions: [
-      "Hornbill Festival - Festival of festivals showcasing all Naga tribes",
-      "Aoling - New Year festival of Konyak tribe",
-      "Sekrenyi - Purification festival of Angami tribe",
-      "Tuluni - Rice beer festival of Sumi tribe",
-      "War Dances - Traditional performances depicting warrior heritage"
-    ],
-    heritage: [
-      "Kohima War Cemetery - Memorial for Battle of Kohima in WWII",
-      "Dzukou Valley - Valley of flowers with seasonal blooms",
-      "Kachari Ruins - Archaeological remains of medieval period",
-      "Mon District - Land of Konyak headhunters with unique culture",
-      "Naga Heritage Village - Museum showcasing tribal traditions"
-    ],
-    culture: "Naga culture celebrates tribal diversity, warrior traditions, and community festivals. The state values indigenous customs, oral traditions, and collective decision-making processes.",
-    cuisine: "Naga cuisine includes spicy dishes like Naga Raja Chili preparations, smoked pork, bamboo shoot curry, and fermented fish. The food is known for its fierce spiciness and unique flavors.",
-    color: "from-red-700 to-pink-800",
-    festivals: ["Hornbill Festival", "Aoling", "Sekrenyi", "Christmas"],
-    languages: ["English", "Nagamese", "Various tribal languages"],
-    famousFor: ["Hornbill Festival", "Tribal Culture", "Spicy Food", "Handloom"]
-  },
-  "sikkim": {
-    name: "Sikkim",
-    capital: "Gangtok",
-    description: "Sikkim, a Himalayan kingdom, is known for its Buddhist monasteries, organic farming, stunning mountain views of Kanchenjunga, and being India's first fully organic state.",
-    traditions: [
-      "Losar - Tibetan New Year with traditional celebrations",
-      "Saga Dawa - Buddha's enlightenment festival",
-      "Pang Lhabsol - Guardian deity festival unique to Sikkim",
-      "Dashain - Nepali festival celebrated with enthusiasm",
-      "Cham Dance - Masked Buddhist monastery dances"
-    ],
-    heritage: [
-      "Rumtek Monastery - Important Tibetan Buddhist monastery",
-      "Pemayangtse Monastery - Ancient monastery with traditional architecture",
-      "Nathu La Pass - Historic Silk Route trading point",
-      "Yumthang Valley - Valley of flowers with hot springs",
-      "Kanchenjunga - Third highest peak visible from Sikkim"
-    ],
-    culture: "Sikkimese culture blends Tibetan Buddhist, Nepali, and Lepcha traditions. The state values environmental conservation, peaceful coexistence, and sustainable development practices.",
-    cuisine: "Sikkimese cuisine includes momos, thukpa, gundruk (fermented leafy vegetables), sel roti, and various Tibetan and Nepali influenced dishes. Chhurpi (yak cheese) is a local specialty.",
-    color: "from-indigo-700 to-purple-800",
-    festivals: ["Losar", "Saga Dawa", "Dashain", "Tihar"],
-    languages: ["Nepali", "Sikkimese", "Lepcha", "English"],
-    famousFor: ["Organic Farming", "Buddhism", "Kanchenjunga", "Adventure Tourism"]
-  },
-  "tripura": {
-    name: "Tripura",
-    capital: "Agartala",
-    description: "Tripura is known for its royal palaces, bamboo handicrafts, diverse tribal culture, and ancient temples. The state has a unique blend of Bengali and tribal traditions.",
-    traditions: [
-      "Garia Dance - Traditional tribal dance celebrating harvest",
-      "Kharchi Puja - Worship of fourteen gods at Chaturdasha temple",
-      "Durga Puja - Grand celebrations similar to West Bengal",
-      "Tribal Festivals - Various celebrations of indigenous communities",
-      "Poush Sankranti - Harvest festival with traditional foods"
-    ],
-    heritage: [
-      "Ujjayanta Palace - Royal palace now serving as state museum",
-      "Neermahal - Water palace in middle of Rudrasagar lake",
-      "Tripura Sundari Temple - Ancient Shakti Peetha temple",
-      "Unakoti - Archaeological site with rock-cut sculptures",
-      "Sepahijala Wildlife Sanctuary - Conservation area with diverse species"
-    ],
-    culture: "Tripura culture combines Bengali literature and arts with tribal traditions. The state values royal heritage, artistic expression, and harmonious coexistence of different communities.",
-    cuisine: "Tripura cuisine includes dishes like Muya Awandru (fish with vegetables), Kosoi Bwtwi (fried rice), and various bamboo shoot preparations. The food reflects both Bengali and tribal influences.",
-    color: "from-amber-700 to-yellow-800",
-    festivals: ["Kharchi Puja", "Durga Puja", "Garia", "Diwali"],
-    languages: ["Bengali", "Tripuri", "Hindi"],
-    famousFor: ["Royal Palaces", "Bamboo Crafts", "Tribal Culture", "Temples"]
-  },
-  // Union Territories
-  "delhi": {
-    name: "Delhi",
-    capital: "New Delhi",
-    description: "Delhi, India's national capital territory, is a blend of ancient heritage and modern governance. The city has been the seat of power for various empires and continues to be the political center of India.",
-    traditions: [
-      "Republic Day Parade - Grand national celebration at Rajpath",
-      "Dussehra at Red Fort - Traditional celebration with historical significance",
-      "Diwali Celebrations - Festival of lights celebrated across the city",
-      "Sufi Traditions - Qawwali and spiritual music at dargahs",
-      "Delhi Heritage Walks - Exploring architectural marvels"
-    ],
-    heritage: [
-      "Red Fort - UNESCO World Heritage Site and Mughal architecture",
-      "Qutub Minar - Medieval Islamic architecture and UNESCO site",
-      "India Gate - War memorial and national monument",
-      "Lotus Temple - Modern architectural marvel promoting unity",
-      "Humayun's Tomb - Mughal architecture inspiring Taj Mahal design"
-    ],
-    culture: "Delhi culture represents diverse Indian traditions coming together in the national capital. The city values historical preservation, cultural plurality, and modern governance while maintaining ancient roots.",
-    cuisine: "Delhi cuisine includes street food like Chaat, Paranthe Wali Gali delicacies, Mughlai dishes, and specialties from all Indian regions. The food reflects the cosmopolitan nature of the capital.",
-    color: "from-red-800 to-pink-900",
-    festivals: ["Republic Day", "Independence Day", "Diwali", "Eid"],
-    languages: ["Hindi", "English", "Punjabi", "Urdu"],
-    famousFor: ["Red Fort", "India Gate", "Street Food", "Political Center"]
-  },
-  "jammu-and-kashmir": {
-    name: "Jammu and Kashmir",
-    capital: "Srinagar (Summer), Jammu (Winter)",
-    description: "Jammu and Kashmir, paradise on earth, is known for its stunning natural beauty, Dal Lake, houseboats, Sufi traditions, and unique Kashmiri culture blending Hindu and Islamic influences.",
-    traditions: [
-      "Shikara Rides - Traditional boat rides on Dal Lake",
-      "Kashmiri Folk Music - Sufi and traditional songs",
-      "Carpet Weaving - Handwoven carpets with intricate designs",
-      "Walnut Wood Carving - Traditional handicraft of Kashmir",
-      "Tulip Festival - Celebration of spring in Srinagar"
-    ],
-    heritage: [
-      "Dal Lake - Iconic lake with houseboats and floating gardens",
-      "Mughal Gardens - Shalimar, Nishat, and Chashme Shahi gardens",
-      "Vaishno Devi Temple - Sacred pilgrimage site in Jammu",
-      "Gulmarg - Ski resort and meadow of flowers",
-      "Sonamarg - Meadow of gold with glacier views"
-    ],
-    culture: "Kashmiri culture blends Hindu, Islamic, and Sufi traditions with emphasis on hospitality, poetry, and craftsmanship. The state values artistic expression, spiritual practices, and peaceful coexistence.",
-    cuisine: "Kashmiri cuisine includes dishes like Rogan Josh, Yakhni, Kahwa (tea), and Wazwan (multi-course meal). The food reflects Persian influences and local ingredients like saffron and dried fruits.",
-    color: "from-blue-800 to-indigo-900",
-    festivals: ["Tulip Festival", "Hemis Festival", "Shivratri", "Eid"],
-    languages: ["Kashmiri", "Dogri", "Hindi", "Urdu"],
-    famousFor: ["Dal Lake", "Houseboats", "Saffron", "Handicrafts"]
-  },
-  "ladakh": {
-    name: "Ladakh",
-    capital: "Leh",
-    description: "Ladakh, the land of high passes, is known for its stark Himalayan beauty, Buddhist monasteries, high-altitude desert landscape, and unique Tibetan Buddhist culture in the Indian Himalayas.",
-    traditions: [
-      "Hemis Festival - Major Buddhist festival with masked dances",
-      "Losar - Ladakhi New Year celebration",
-      "Polo at High Altitude - Traditional sport in rarefied air",
-      "Prayer Flag Traditions - Colorful flags carrying sacred mantras",
-      "Monastery Life - Buddhist monastic traditions and practices"
-    ],
-    heritage: [
-      "Leh Palace - Ancient royal palace overlooking Leh city",
-      "Hemis Monastery - Largest and richest monastery in Ladakh",
-      "Thiksey Monastery - Impressive monastery complex with valley views",
-      "Pangong Tso - High-altitude lake with changing colors",
-      "Nubra Valley - High-altitude desert with double-humped camels"
-    ],
-    culture: "Ladakhi culture is predominantly Tibetan Buddhist with emphasis on non-violence, meditation, and harmony with harsh mountain environment. The region values traditional practices and environmental adaptation.",
-    cuisine: "Ladakhi cuisine includes dishes like Thukpa (noodle soup), Momos (dumplings), Skyu (pasta-like dish), and Chang (barley beer). The food is adapted to high-altitude living and cold climate.",
-    color: "from-purple-800 to-indigo-900",
-    festivals: ["Hemis Festival", "Losar", "Dosmoche", "Sindhu Darshan"],
-    languages: ["Ladakhi", "Tibetan", "Hindi", "English"],
-    famousFor: ["Buddhist Monasteries", "High Altitude", "Adventure Tourism", "Unique Landscape"]
-  },
-  "puducherry": {
-    name: "Puducherry",
-    capital: "Puducherry",
-    description: "Puducherry, former French colony, is known for its unique Franco-Tamil culture, Sri Aurobindo Ashram, beautiful beaches, and distinctive colonial architecture blending French and Indian elements.",
-    traditions: [
-      "French Colonial Heritage - Architecture and cultural influences",
-      "Sri Aurobindo Philosophy - Spiritual practices and integral yoga",
-      "Tamil Cultural Festivals - Traditional celebrations with French touches",
-      "Creole Cuisine - Fusion of French and South Indian flavors",
-      "Heritage Walks - Exploring French Quarter architecture"
-    ],
-    heritage: [
-      "French Quarter - Colonial buildings with European architecture",
-      "Sri Aurobindo Ashram - International spiritual community",
-      "Auroville - Experimental township promoting human unity",
-      "Promenade Beach - Scenic waterfront with French colonial buildings",
-      "Sacred Heart Basilica - Gothic architecture church"
-    ],
-    culture: "Puducherry culture uniquely blends French colonial influences with Tamil traditions. The territory values spiritual seeking, international cooperation, and preservation of multicultural heritage.",
-    cuisine: "Puducherry cuisine includes French-influenced dishes, traditional Tamil food, and fusion preparations. Specialties include croissants with sambar, French pastries, and seafood with local spices.",
-    color: "from-cyan-800 to-blue-900",
-    festivals: ["Bastille Day", "Pongal", "Diwali", "Christmas"],
-    languages: ["Tamil", "French", "English", "Telugu"],
-    famousFor: ["French Heritage", "Auroville", "Beaches", "Spiritual Tourism"]
-  },
+  // Add remaining states with similar structure...
   "chandigarh": {
     name: "Chandigarh",
     capital: "Chandigarh",
-    description: "Chandigarh, a planned city designed by Le Corbusier, is known for its modern urban planning, beautiful gardens, contemporary architecture, and serving as joint capital of Punjab and Haryana.",
+    description: "Chandigarh, the planned city designed by Le Corbusier, represents modern urban planning excellence. It serves as the capital of both Punjab and Haryana, showcasing architectural innovation and urban design.",
     traditions: [
-      "Modern Urban Planning - Systematic city design with sectors",
-      "Garden Culture - Numerous themed gardens and green spaces",
-      "Art and Architecture - Contemporary design and sculpture parks",
-      "Cosmopolitan Lifestyle - Blend of Punjabi and Haryanvi cultures",
-      "Educational Excellence - Premier institutions and research centers"
+      "Rose Festival - Annual celebration at Zakir Hussain Rose Garden",
+      "Teej Festival - Monsoon celebration with traditional songs and dances",
+      "Baisakhi - Harvest festival celebrated with Punjabi enthusiasm",
+      "Modern Architecture Tours - Showcasing Le Corbusier's urban planning",
+      "Cultural Programs - Regular events at various cultural centers"
     ],
     heritage: [
-      "Rock Garden - Artistic creation using industrial waste by Nek Chand",
-      "Sukhna Lake - Artificial lake with recreational activities",
-      "Rose Garden - Asia's largest rose garden with numerous varieties",
-      "Capitol Complex - Le Corbusier's architectural masterpiece",
-      "Government Museum - Repository of Gandhara sculptures and artifacts"
+      "Capitol Complex - UNESCO World Heritage Site by Le Corbusier",
+      "Rock Garden - Unique sculpture garden made from industrial waste",
+      "Sukhna Lake - Artificial lake designed for recreation and beauty",
+      "Open Hand Monument - Symbol of peace and reconciliation",
+      "Government Museum and Art Gallery - Showcasing regional art and culture"
     ],
-    culture: "Chandigarh culture represents modern Indian urban planning with emphasis on green living, architectural appreciation, and cosmopolitan lifestyle. The city values innovation, cleanliness, and quality of life.",
-    cuisine: "Chandigarh cuisine reflects both Punjabi and Haryanvi influences with dishes like Chole Bhature, Butter Chicken, Sarson da Saag, and modern restaurant culture offering diverse cuisines.",
+    culture: "Chandigarh culture represents modern India's aspiration for planned development while maintaining cultural roots. The city embodies the spirit of post-independence India with its focus on education, arts, and progressive values.",
+    cuisine: "Chandigarh cuisine reflects North Indian flavors with Punjabi influences. Popular dishes include Chole Bhature, Rajma Chawal, Butter Chicken, and various street foods. The city's restaurant culture offers diverse culinary experiences.",
     color: "from-emerald-800 to-green-900",
-    festivals: ["Rose Festival", "Mango Festival", "Teej", "Diwali"],
+    festivals: ["Rose Festival", "Baisakhi", "Teej", "Diwali"],
     languages: ["Hindi", "Punjabi", "English"],
-    famousFor: ["Modern Architecture", "Rock Garden", "Urban Planning", "Gardens"]
-  },
-  "andaman-and-nicobar-islands": {
-    name: "Andaman and Nicobar Islands",
-    capital: "Port Blair",
-    description: "Andaman and Nicobar Islands are tropical paradise known for pristine beaches, marine biodiversity, tribal heritage, and historical significance in India's freedom struggle.",
-    traditions: [
-      "Tribal Cultures - Indigenous communities with ancient traditions",
-      "Island Festival - Celebration of local culture and tourism",
-      "Underwater Activities - Scuba diving and marine exploration",
-      "Cellular Jail History - Freedom struggle memorial events",
-      "Beach Festivals - Seasonal celebrations on various islands"
+    famousFor: ["Urban Planning", "Rock Garden", "Modern Architecture", "Clean City"],
+    media: [
+      {
+        id: "1",
+        type: "image" as const,
+        src: chandigarhCity,
+        alt: "Modern Chandigarh cityscape with Le Corbusier architecture and planned urban design",
+        caption: "The first planned city of India showcasing modernist architecture",
+        title: "Chandigarh City Planning"
+      }
     ],
-    heritage: [
-      "Cellular Jail - Historical prison from British era",
-      "Radhanagar Beach - One of Asia's best beaches",
-      "Mahatma Gandhi Marine National Park - Protected marine ecosystem",
-      "Anthropological Museum - Showcasing tribal cultures",
-      "Ross Island - Ruins of British administrative headquarters"
+    events: [
+      {
+        id: "1",
+        name: "Rose Festival",
+        description: "Annual celebration at Zakir Hussain Rose Garden",
+        date: "2024-02-20",
+        location: "Chandigarh",
+        type: "Floral Festival",
+        availability: "available" as const,
+        attendees: 50000,
+        maxAttendees: 75000
+      }
     ],
-    culture: "Islands culture blends mainland Indian traditions with indigenous tribal customs and maritime influences. The territory values environmental conservation, tribal rights, and sustainable tourism.",
-    cuisine: "Island cuisine includes fresh seafood, coconut-based preparations, tropical fruits, and dishes influenced by South Indian, Bengali, and tribal cooking methods.",
-    color: "from-teal-800 to-cyan-900",
-    festivals: ["Island Tourism Festival", "Beach Festival", "Diwali", "Christmas"],
-    languages: ["Hindi", "English", "Bengali", "Tamil"],
-    famousFor: ["Beaches", "Marine Life", "Cellular Jail", "Tribal Culture"]
-  },
-  "lakshadweep": {
-    name: "Lakshadweep",
-    capital: "Kavaratti",
-    description: "Lakshadweep, India's smallest union territory, consists of coral islands known for pristine lagoons, marine biodiversity, Islamic culture, and sustainable island living practices.",
-    traditions: [
-      "Lava Dance - Traditional dance performed during festivals",
-      "Kolkali - Stick dance performed by men in groups",
-      "Parichakali - Martial art form with sword and shield",
-      "Islamic Festivals - Eid celebrations with community gatherings",
-      "Coconut Festival - Celebrating island's primary crop"
-    ],
-    heritage: [
-      "Marine Biodiversity - Coral reefs and underwater ecosystems",
-      "Traditional Architecture - Coral stone houses with Islamic design",
-      "Lighthouse Heritage - Navigation aids for maritime history",
-      "Lagoons - Pristine water bodies with unique marine life",
-      "Sustainable Practices - Traditional methods of island conservation"
-    ],
-    culture: "Lakshadweep culture is predominantly Islamic with Malayali influences, emphasizing community cooperation, maritime traditions, and environmental harmony. The islands value sustainable living and traditional practices.",
-    cuisine: "Lakshadweep cuisine features seafood, coconut-based dishes, and preparations using local ingredients. Traditional dishes include fish curry, coconut rice, and various tropical fruit preparations.",
-    color: "from-blue-900 to-indigo-950",
-    festivals: ["Eid ul-Fitr", "Eid ul-Adha", "Milad un-Nabi", "Muharram"],
-    languages: ["Malayalam", "Mahl", "English"],
-    famousFor: ["Coral Islands", "Marine Life", "Lagoons", "Sustainable Living"]
-  },
-  "dadra-and-nagar-haveli-and-daman-and-diu": {
-    name: "Dadra and Nagar Haveli and Daman and Diu",
-    capital: "Daman",
-    description: "These former Portuguese territories are known for their coastal beauty, Portuguese colonial heritage, tribal culture, and unique blend of Indian and European influences.",
-    traditions: [
-      "Portuguese Heritage - Colonial architecture and cultural influences",
-      "Tribal Festivals - Celebrations of Warli and other tribal communities",
-      "Beach Culture - Coastal lifestyle and fishing traditions",
-      "Folk Dances - Traditional performances during festivals",
-      "Handicrafts - Local art and craft traditions"
-    ],
-    heritage: [
-      "Diu Fort - Portuguese fortress with historical significance",
-      "St. Paul's Church - Colonial religious architecture",
-      "Daman Fort - Portuguese defensive structure",
-      "Tribal Villages - Indigenous communities with traditional lifestyle",
-      "Coastal Temples - Blend of Hindu and Portuguese architectural styles"
-    ],
-    culture: "The culture blends Portuguese colonial influences with tribal and Gujarati traditions. The region values its unique heritage, coastal lifestyle, and multicultural harmony.",
-    cuisine: "The cuisine includes Portuguese-influenced dishes, seafood preparations, and tribal food. Specialties include fish curry, bebinca, and various coconut-based preparations.",
-    color: "from-amber-800 to-orange-900",
-    festivals: ["Christmas", "Navratri", "Diwali", "Tribal Festivals"],
-    languages: ["Gujarati", "Portuguese", "Hindi", "English"],
-    famousFor: ["Portuguese Heritage", "Beaches", "Forts", "Tribal Culture"]
+    contacts: [
+      {
+        department: "Chandigarh Tourism",
+        phone: "+91-172-270-3839",
+        email: "info@chandigarhtourism.gov.in",
+        website: "https://www.chandigarhtourism.gov.in",
+        address: "Inter State Bus Terminal, Sector 17, Chandigarh - 160017",
+        hours: "Monday to Friday: 9:30 AM - 5:30 PM",
+        services: ["City Tours", "Architecture Tours", "Garden Visits", "Cultural Programs"]
+      }
+    ]
   }
 };
 
-const StatePage = () => {
+interface StatePageProps {}
+
+const StatePage = ({}: StatePageProps) => {
   const { stateName } = useParams<{ stateName: string }>();
   const navigate = useNavigate();
-  
-  const state = stateName ? stateData[stateName as keyof typeof stateData] : null;
+
+  if (!stateName) {
+    navigate("/");
+    return null;
+  }
+
+  const stateKey = stateName.toLowerCase().replace(/\s+/g, '-');
+  const state = stateData[stateKey as keyof typeof stateData];
 
   if (!state) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-cultural">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-foreground mb-4">State Not Found</h1>
-          <p className="text-muted-foreground mb-6">The requested state information is not available.</p>
-          <Button onClick={() => navigate("/")} variant="heritage">
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Home
-          </Button>
-        </div>
-      </div>
-    );
+    navigate("/404");
+    return null;
   }
 
   return (
-    <div className="min-h-screen bg-gradient-cultural">
-      {/* Header */}
-      <div className="bg-white/80 backdrop-blur-sm border-b border-border/50 sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <Button 
-            variant="ghost" 
-            onClick={() => navigate("/")}
-            className="hover:bg-heritage-saffron/10"
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Home
-          </Button>
-          <h1 className="text-2xl font-bold text-foreground">{state.name}</h1>
-          <div className="w-20"></div> {/* Spacer for centering */}
-        </div>
-      </div>
+    <main className="min-h-screen bg-gradient-cultural">
+      {/* Skip to main content link for screen readers */}
+      <a 
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-heritage-saffron text-white px-4 py-2 rounded-lg z-50"
+      >
+        Skip to main content
+      </a>
 
-      {/* Hero Section */}
-      <section className="py-16 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className={`w-full h-64 rounded-2xl bg-gradient-to-br ${state.color} mb-8 flex items-center justify-center relative overflow-hidden shadow-elegant`}>
-            <div className="absolute inset-0 bg-black/30"></div>
-            <div className="relative z-10 text-center text-white">
-              <h1 className="text-5xl font-bold mb-4">{state.name}</h1>
-              <div className="flex items-center justify-center gap-2 text-xl">
-                <MapPin className="h-5 w-5" />
-                <span>Capital: {state.capital}</span>
-              </div>
+      {/* Header */}
+      <header className="bg-card/90 backdrop-blur-sm border-b-2 border-heritage-gold/20 sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <Button
+              variant="ghost"
+              onClick={() => navigate("/")}
+              className="text-heritage-indigo hover:text-heritage-saffron transition-colors"
+              aria-label="Go back to homepage"
+            >
+              <ArrowLeft size={20} className="mr-2" aria-hidden="true" />
+              Back to States
+            </Button>
+            
+            <div className="text-center">
+              <h1 className="text-2xl md:text-3xl font-bold text-foreground">
+                {state.name}
+              </h1>
+              <p className="text-muted-foreground">
+                <MapPin size={16} className="inline mr-1" aria-hidden="true" />
+                Capital: {state.capital}
+              </p>
+            </div>
+            
+            <div className="flex gap-2">
+              {state.famousFor.slice(0, 2).map((item, index) => (
+                <Badge 
+                  key={index}
+                  variant="secondary"
+                  className="text-xs bg-heritage-gold/20 text-heritage-indigo"
+                >
+                  {item}
+                </Badge>
+              ))}
             </div>
           </div>
+        </div>
+      </header>
+
+      {/* Main content */}
+      <div id="main-content" className="max-w-7xl mx-auto px-6 py-8 space-y-12">
+        
+        {/* State Overview */}
+        <section aria-labelledby="overview-title">
+          <Card className="bg-card/90 backdrop-blur-sm border-2 border-heritage-gold/30">
+            <CardHeader>
+              <CardTitle id="overview-title" className="text-2xl text-foreground flex items-center gap-2">
+                <Heart size={24} className="text-heritage-saffron" aria-hidden="true" />
+                About {state.name}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-foreground leading-relaxed text-lg">
+                {state.description}
+              </p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                <div className="text-center p-4 bg-heritage-gold/10 rounded-lg">
+                  <Users size={24} className="mx-auto text-heritage-saffron mb-2" aria-hidden="true" />
+                  <h3 className="font-semibold text-foreground">Languages</h3>
+                  <p className="text-muted-foreground text-sm">
+                    {state.languages.join(", ")}
+                  </p>
+                </div>
+                
+                <div className="text-center p-4 bg-heritage-indigo/10 rounded-lg">
+                  <Calendar size={24} className="mx-auto text-heritage-indigo mb-2" aria-hidden="true" />
+                  <h3 className="font-semibold text-foreground">Major Festivals</h3>
+                  <p className="text-muted-foreground text-sm">
+                    {state.festivals.slice(0, 2).join(", ")}
+                  </p>
+                </div>
+                
+                <div className="text-center p-4 bg-heritage-emerald/10 rounded-lg">
+                  <Star size={24} className="mx-auto text-heritage-emerald mb-2" aria-hidden="true" />
+                  <h3 className="font-semibold text-foreground">Famous For</h3>
+                  <p className="text-muted-foreground text-sm">
+                    {state.famousFor.slice(0, 2).join(", ")}
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
+
+        {/* Media Gallery */}
+        {state.media && state.media.length > 0 && (
+          <section aria-labelledby="media-gallery-title">
+            <h2 id="media-gallery-title" className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+              <Camera size={24} className="text-heritage-saffron" aria-hidden="true" />
+              Visual Journey Through {state.name}
+            </h2>
+            <MediaGallery media={state.media} stateName={state.name} />
+          </section>
+        )}
+
+        {/* Upcoming Events */}
+        {state.events && state.events.length > 0 && (
+          <UpcomingEvents stateName={state.name} events={state.events} />
+        )}
+
+        {/* Expandable Content Sections */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            {state.description}
-          </p>
+          {/* Traditions */}
+          <ExpandableSection 
+            title="Rich Traditions"
+            description={`Discover the vibrant traditions of ${state.name}`}
+            icon={<Music size={20} />}
+            defaultExpanded={true}
+          >
+            <ul className="space-y-3" role="list">
+              {state.traditions.map((tradition, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-heritage-saffron rounded-full mt-2 flex-shrink-0" aria-hidden="true" />
+                  <p className="text-foreground">{tradition}</p>
+                </li>
+              ))}
+            </ul>
+          </ExpandableSection>
+
+          {/* Heritage Sites */}
+          <ExpandableSection 
+            title="Heritage Sites"
+            description={`Explore the architectural marvels of ${state.name}`}
+            icon={<MapPin size={20} />}
+            defaultExpanded={true}
+          >
+            <ul className="space-y-3" role="list">
+              {state.heritage.map((site, index) => (
+                <li key={index} className="flex items-start gap-3">
+                  <div className="w-2 h-2 bg-heritage-indigo rounded-full mt-2 flex-shrink-0" aria-hidden="true" />
+                  <p className="text-foreground">{site}</p>
+                </li>
+              ))}
+            </ul>
+          </ExpandableSection>
+
+          {/* Culture */}
+          <ExpandableSection 
+            title="Cultural Heritage"
+            description={`Understanding the cultural essence of ${state.name}`}
+            icon={<Book size={20} />}
+          >
+            <p className="text-foreground leading-relaxed">{state.culture}</p>
+          </ExpandableSection>
+
+          {/* Cuisine */}
+          <ExpandableSection 
+            title="Culinary Delights"
+            description={`Savor the authentic flavors of ${state.name}`}
+            icon={<Utensils size={20} />}
+          >
+            <p className="text-foreground leading-relaxed">{state.cuisine}</p>
+          </ExpandableSection>
+
         </div>
-      </section>
 
-      {/* Content Sections */}
-      <section className="py-12 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            
-            {/* Traditions */}
-            <Card className="bg-card/80 backdrop-blur-sm border-2 border-border/50">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-heritage-saffron">
-                  <Calendar className="h-5 w-5" />
-                  Traditions & Festivals
-                </CardTitle>
-                <CardDescription>
-                  Celebrate the vibrant festivals and age-old traditions
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  {state.traditions.map((tradition, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-heritage-gold rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-muted-foreground">{tradition}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+        {/* Contact Information */}
+        {state.contacts && state.contacts.length > 0 && (
+          <ContactInfo stateName={state.name} contacts={state.contacts} />
+        )}
 
-            {/* Heritage Sites */}
-            <Card className="bg-card/80 backdrop-blur-sm border-2 border-border/50">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-heritage-indigo">
-                  <Palette className="h-5 w-5" />
-                  Heritage Sites
-                </CardTitle>
-                <CardDescription>
-                  Architectural marvels and historical monuments
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ul className="space-y-3">
-                  {state.heritage.map((site, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <div className="w-2 h-2 bg-heritage-emerald rounded-full mt-2 flex-shrink-0"></div>
-                      <span className="text-muted-foreground">{site}</span>
-                    </li>
-                  ))}
-                </ul>
-              </CardContent>
-            </Card>
+        {/* Quick Facts */}
+        <section aria-labelledby="quick-facts-title">
+          <Card className="bg-gradient-heritage text-primary-foreground">
+            <CardHeader>
+              <CardTitle id="quick-facts-title" className="text-xl flex items-center gap-2">
+                <Globe size={20} aria-hidden="true" />
+                Quick Facts About {state.name}
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="text-center">
+                  <h3 className="font-semibold mb-1">Capital</h3>
+                  <p className="text-sm opacity-90">{state.capital}</p>
+                </div>
+                <div className="text-center">
+                  <h3 className="font-semibold mb-1">Languages</h3>
+                  <p className="text-sm opacity-90">{state.languages.length}</p>
+                </div>
+                <div className="text-center">
+                  <h3 className="font-semibold mb-1">Major Festivals</h3>
+                  <p className="text-sm opacity-90">{state.festivals.length}</p>
+                </div>
+                <div className="text-center">
+                  <h3 className="font-semibold mb-1">Heritage Sites</h3>
+                  <p className="text-sm opacity-90">{state.heritage.length}</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
 
-            {/* Culture */}
-            <Card className="bg-card/80 backdrop-blur-sm border-2 border-border/50">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-heritage-emerald">
-                  <Users className="h-5 w-5" />
-                  Cultural Heritage
-                </CardTitle>
-                <CardDescription>
-                  Values, beliefs, and way of life
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed">
-                  {state.culture}
-                </p>
-              </CardContent>
-            </Card>
+        {/* Call to Action */}
+        <section className="text-center">
+          <Card className="bg-card/90 backdrop-blur-sm border-2 border-heritage-gold/30">
+            <CardContent className="py-8">
+              <h2 className="text-2xl font-bold text-foreground mb-4">
+                Plan Your Visit to {state.name}
+              </h2>
+              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                Experience the rich cultural heritage, traditions, and hospitality that make {state.name} truly special.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <Button 
+                  className="bg-heritage-saffron hover:bg-heritage-saffron/90 text-white"
+                  onClick={() => window.open('https://www.incredibleindia.org', '_blank', 'noopener,noreferrer')}
+                  aria-label="Visit Incredible India website to plan your trip"
+                >
+                  <Globe size={16} className="mr-2" aria-hidden="true" />
+                  Plan Your Trip
+                </Button>
+                <Button 
+                  variant="outline"
+                  className="border-heritage-indigo text-heritage-indigo hover:bg-heritage-indigo hover:text-white"
+                  onClick={() => navigate("/")}
+                  aria-label="Explore more Indian states"
+                >
+                  <MapPin size={16} className="mr-2" aria-hidden="true" />
+                  Explore More States
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </section>
 
-            {/* Cuisine */}
-            <Card className="bg-card/80 backdrop-blur-sm border-2 border-border/50">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-heritage-gold">
-                  <Palette className="h-5 w-5" />
-                  Culinary Traditions
-                </CardTitle>
-                <CardDescription>
-                  Flavors and dishes that define the region
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed">
-                  {state.cuisine}
-                </p>
-              </CardContent>
-            </Card>
-
-          </div>
-        </div>
-      </section>
-    </div>
+      </div>
+    </main>
   );
 };
 
