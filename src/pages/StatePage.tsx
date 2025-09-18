@@ -7,6 +7,8 @@ import MediaGallery from "@/components/MediaGallery";
 import UpcomingEvents from "@/components/UpcomingEvents";
 import ExpandableSection from "@/components/ExpandableSection";
 import ContactInfo from "@/components/ContactInfo";
+import UserContributionSection from "@/components/UserContributionSection";
+import DetailedStateContent from "@/components/DetailedStateContent";
 
 // Import images
 import templeDravidian from "@/assets/temple-dravidian.jpg";

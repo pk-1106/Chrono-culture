@@ -129,9 +129,9 @@ const UpcomingEvents = ({ stateName, events }: UpcomingEventsProps) => {
             
             <CardContent className="pt-0 space-y-3">
               {/* Countdown Timer */}
-              <div className="bg-gradient-heritage rounded-lg p-3 text-center">
+              <div className="bg-gradient-heritage rounded-lg p-3 text-center" role="timer">
                 <div className="flex items-center justify-center gap-2 mb-1">
-                  <Clock size={16} className="text-primary-foreground" />
+                  <Clock size={16} className="text-primary-foreground" aria-hidden="true" />
                   <span className="text-primary-foreground font-semibold text-sm">
                     Time Until Event
                   </span>
@@ -139,7 +139,8 @@ const UpcomingEvents = ({ stateName, events }: UpcomingEventsProps) => {
                 <div 
                   className="text-primary-foreground font-bold text-lg"
                   aria-live="polite"
-                  aria-label={`Time remaining: ${timeUntilEvents[event.id] || 'Loading...'}`}
+                  aria-atomic="true"
+                  aria-label={`Time remaining until ${event.name}: ${timeUntilEvents[event.id] || 'Loading countdown...'}`}
                 >
                   {timeUntilEvents[event.id] || 'Loading...'}
                 </div>
@@ -149,7 +150,12 @@ const UpcomingEvents = ({ stateName, events }: UpcomingEventsProps) => {
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <Calendar size={16} aria-hidden="true" />
-                  <time dateTime={event.date}>
+                  <time dateTime={event.date} aria-label={`Event date: ${new Date(event.date).toLocaleDateString('en-IN', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}`}>
                     {new Date(event.date).toLocaleDateString('en-IN', {
                       weekday: 'long',
                       year: 'numeric',
@@ -161,7 +167,7 @@ const UpcomingEvents = ({ stateName, events }: UpcomingEventsProps) => {
                 
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <MapPin size={16} aria-hidden="true" />
-                  <span>{event.location}</span>
+                  <span aria-label={`Event location: ${event.location}`}>{event.location}</span>
                 </div>
                 
                 {event.attendees !== undefined && event.maxAttendees !== undefined && (
